@@ -23,12 +23,12 @@ android {
     buildTypes {
         getByName("debug") {
             //wifi
-            buildConfigField("String", "BASE_URL", "\"http://192.168.1.9:3000/\"")
+            buildConfigField("String", "BASE_URL", "\"http://10.50.101.25:3000/\"")
             buildConfigField("String", "WEB_CLIENT_ID", "\"417602227592-dr9pfbsml00qndmie5rr42i9rchmr1km.apps.googleusercontent.com\"")
 
         }
         getByName("release") {
-            buildConfigField("String", "BASE_URL", "\"http://192.168.1.9:3000/\"")
+            buildConfigField("String", "BASE_URL", "\"http://10.50.101.25:3000/\"")
             buildConfigField("String", "WEB_CLIENT_ID", "\"417602227592-dr9pfbsml00qndmie5rr42i9rchmr1km.apps.googleusercontent.com\"")
             isMinifyEnabled = false
             proguardFiles(
@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.volley)
+    implementation(libs.play.services.cast.tv)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

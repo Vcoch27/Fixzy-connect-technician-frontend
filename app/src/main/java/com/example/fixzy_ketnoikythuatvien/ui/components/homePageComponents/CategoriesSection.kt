@@ -32,10 +32,9 @@ import com.example.fixzy_ketnoikythuatvien.ui.theme.LocalAppTypography
 fun CategoriesSection(modifier: Modifier = Modifier,navController: NavController) {
     val TAG = "CategoriesSection"
     val typography = LocalAppTypography.current
-    val state by Store.Companion.stateFlow.collectAsState() // Sử dụng StateFlow
+    val state by Store.stateFlow.collectAsState()
 
     LaunchedEffect(Unit) {
-        Log.d(TAG, "Fetching categories...")
         CategoryController.fetchCategories()
     }
 

@@ -28,9 +28,7 @@ class UserService {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val apiService = ApiClient.apiService
     suspend fun fetchTopTechnicians(categoryId: String? = null): TopTechnicianResponse {
-        Log.d(TAG, "Bắt đầu lấy kỹ thuật viên với categoryId: $categoryId")
         val response = apiService.getTopTechnicians(categoryId)
-        Log.d(TAG, "Nhận được phản hồi: số lượng=${response.data.size}, chi tiết=${response.data}")
         return response
     }
 

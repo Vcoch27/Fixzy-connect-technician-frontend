@@ -225,12 +225,6 @@ class AuthService(
                     val userDataResponse = response.body()
                     Log.d(TAG, "Response body: $userDataResponse")
 
-                    val rawJson = if (response.isSuccessful && userDataResponse != null) {
-                        com.google.gson.Gson().toJson(userDataResponse)
-                    } else {
-                        response.errorBody()?.string() ?: "No error body available"
-                    }
-
                     if (response.isSuccessful) {
                         if (userDataResponse?.success == true && userDataResponse.user != null) {
                             Log.d(TAG, "Checking role: ${userDataResponse.user.role}")
@@ -448,9 +442,6 @@ class AuthService(
         })
     }
 
-    companion object {
-        const val RC_SIGN_IN = 9001
-    }
 
     fun signOut(onComplete: (() -> Unit)? = null) {
         auth.signOut()

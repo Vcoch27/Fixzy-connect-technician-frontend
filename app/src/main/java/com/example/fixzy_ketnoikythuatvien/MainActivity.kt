@@ -24,12 +24,13 @@ import com.example.fixzy_ketnoikythuatvien.utils.NotificationHelper
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
+//ẩn thanh trạng thái và điều hướng
 @Composable
 fun HideSystemUI() {
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        systemUiController.isSystemBarsVisible = false // Ẩn cả thanh trạng thái và thanh điều hướng
+        systemUiController.isSystemBarsVisible = false 
     }
 }
 class MainActivity : ComponentActivity() {

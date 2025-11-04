@@ -68,26 +68,21 @@ private const val TAG = "TopTechniciansSection"
 @Composable
 fun TopTechniciansSection(modifier: Modifier = Modifier,navController: NavController) {
     LaunchedEffect(Unit) {
-        Log.d(TAG, "Bắt đầu lấy danh mục và tất cả kỹ thuật viên")
         CategoryController.fetchCategories()
         TopTechniciansController.fetchTechnicians()
     }
     var selectedCategoryId by remember { mutableStateOf(-1) }
 
     val state by Store.stateFlow.collectAsState()
-    Log.d(
-        TAG,
-        "Trạng thái hiện tại: selectedCategoryId=$selectedCategoryId, số kỹ thuật viên=${state.topTechnicians.size}, số danh mục=${state.categories.size}"
-    )
+//    Log.d(
+//        TAG,
+//        "Trạng thái hiện tại: selectedCategoryId=$selectedCategoryId, số kỹ thuật viên=${state.topTechnicians.size}, số danh mục=${state.categories.size}"
+//    )
 
-    // Gọi API khi danh mục thay đổi
     LaunchedEffect(selectedCategoryId) {
-        Log.i(TAG, "Danh mục thay đổi: selectedCategoryId=$selectedCategoryId")
         if (selectedCategoryId == -1) {
-            Log.d(TAG, "Đang lấy tất cả kỹ thuật viên")
             TopTechniciansController.fetchTechnicians()
         } else {
-            Log.d(TAG, "Đang lấy kỹ thuật viên cho danh mục categoryId=$selectedCategoryId")
             TopTechniciansController.fetchTechnicians(selectedCategoryId)
         }
     }
@@ -95,7 +90,6 @@ fun TopTechniciansSection(modifier: Modifier = Modifier,navController: NavContro
     val typography = LocalAppTypography.current
 
     Column(modifier = modifier) {
-
         Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -152,7 +146,6 @@ fun TopTechniciansSection(modifier: Modifier = Modifier,navController: NavContro
             selectedCategory = selectedCategoryId,
             onCategorySelected = { categoryId ->
                 val newCategoryId = if (categoryId == "All") -1 else categoryId.toIntOrNull() ?: -1
-                Log.i(TAG, "Đã chọn danh mục: categoryId=$categoryId, newCategoryId=$newCategoryId")
                 selectedCategoryId = newCategoryId
             }
         )
